@@ -30,8 +30,11 @@ Everything else (KOReader patch, prompts, settings, library, tools) is in this d
   - Zoom: Zoom in, Zoom out, Fit width (scroll), Fit page, One column at a time.
   - Find your way: Contents, Go to page, Search in document, Bookmark this page (on/off),
     Bookmarks & highlights (KOReader's annotation list: bookmarks, highlights and notes).
-  - Display: night mode, figure colours, Brightness, Rotation lock, More reader settings
+  - Display: night mode, figure colours, Brightness, More reader settings
     (KOReader's bottom bar: zoom/contrast/margins for PDF, font/size/spacing for EPUB).
+    No rotation item: KOReader has no G-sensor access on Android (so no in-app rotation
+    lock) and the inner screen ignores app orientation requests, so rotation is Android's
+    own auto-rotate / rotation lock in quick settings.
   - Papers: previous / next paper, library.
 - **Zoom**: spread two fingers = Zoom in, pinch = Zoom out (stock KOReader binds these to font
   size, which does nothing in a PDF). In a PDF the ladder is fit page -> fit width

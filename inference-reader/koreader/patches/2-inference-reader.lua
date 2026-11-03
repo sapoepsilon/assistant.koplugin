@@ -262,7 +262,8 @@ local function zoomBy(ui, arg)
         return applyLayout(ui, "page")
     end
     local new = zoom_in and math.min(cur * step, ZOOM_MAX) or cur / step
-    if not zoom_in and new <= 1.02 then
+    -- (snap: a step that would land just above 100% goes straight back to fit width)
+    if not zoom_in and new < 1.12 then
         return applyLayout(ui, "inner")
     end
     -- magnified: page view (continuous view cannot pan sideways), manual zoom factor

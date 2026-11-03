@@ -3,6 +3,8 @@
 --   AI | zoom | find your way (contents, go to, search, bookmarks) | display | papers
 -- ir_* actions come from koreader/patches/2-inference-reader.lua, the rest are stock
 -- KOReader dispatcher actions (renamed below via quickmenu_action_names).
+-- No rotation item: KOReader has no G-sensor on Android (lock_gsensor is hidden) and
+-- the inner screen ignores app orientation requests (iterate_rotation did nothing).
 -- A function, so each gesture gets its own copy (kosettings.lua consumes __replace).
 local function reader_quickmenu() return {
   __replace = true,
@@ -22,7 +24,6 @@ local function reader_quickmenu() return {
   ir_night_mode = true,
   ir_toggle_figures = true,
   show_frontlight_dialog = true,
-  lock_gsensor = true,
   show_config_menu = true,
   ir_prev_paper = true,
   ir_next_paper = true,
@@ -33,7 +34,7 @@ local function reader_quickmenu() return {
       "ai_explain_page", "ir_ai_ask", "ai_cycle_provider",
       "ir_zoom_in", "ir_zoom_out", "ir_layout_inner", "ir_layout_page", "ir_layout_columns",
       "ir_contents", "go_to", "fulltext_search", "toggle_bookmark", "bookmarks",
-      "ir_night_mode", "ir_toggle_figures", "show_frontlight_dialog", "lock_gsensor", "show_config_menu",
+      "ir_night_mode", "ir_toggle_figures", "show_frontlight_dialog", "show_config_menu",
       "ir_prev_paper", "ir_next_paper", "ir_library",
     },
     quickmenu_separators = {
@@ -45,7 +46,6 @@ local function reader_quickmenu() return {
       toggle_bookmark = "Bookmark this page (on / off)",
       bookmarks = "Bookmarks & highlights",
       show_frontlight_dialog = "Brightness…",
-      lock_gsensor = "Rotation lock (on / off)",
       show_config_menu = "More reader settings…",
     },
   },
