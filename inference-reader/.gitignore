@@ -1,0 +1,8 @@
+# local secrets / machine config (never commit)
+local.env
+*.key
+# rendered configs (may contain the API key)
+configuration.lua
+# downloaded papers + APK cache
+.cache/
+*.pdf
