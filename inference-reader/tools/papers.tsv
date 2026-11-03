@@ -1,0 +1,19 @@
+# num	folder	file	title	authors	url	sha256
+01	.	01 - PagedAttention vLLM.pdf	1 · PagedAttention (vLLM): Efficient Memory Management for LLM Serving	Kwon, Li, Zhuang et al. · SOSP 2023	https://arxiv.org/pdf/2309.06180v1	55b3b324d779a67c59dac2519445e3b07c14e6ff5c656fadb47a3d7b5997469e
+02	.	02 - FlashAttention.pdf	2 · FlashAttention: Fast, Memory-Efficient Exact Attention	Dao, Fu, Ermon, Rudra, Ré · 2022	https://arxiv.org/pdf/2205.14135v2	ca7f9fda10b90fc05dd291a3accc85e9c1a4a860b99b31928dab03ed3fcb14e4
+03	.	03 - FlashAttention-2.pdf	3 · FlashAttention-2: Better Parallelism and Work Partitioning	Tri Dao · 2023	https://arxiv.org/pdf/2307.08691v1	4aa8935dfacaf6ae8c68f772ca92f730154a0dd0e1bceeb59c7bc56c512d5868
+04	.	04 - FlashAttention-3.pdf	4 · FlashAttention-3: Asynchrony and Low Precision	Shah, Bikshandi, Zhang, Thakkar, Ramani, Dao · 2024	https://arxiv.org/pdf/2407.08608v2	3d05ca102802e6b8ebbae5181efe777b7d258cd75e2fe9cca209efd2f5e6c6cb
+05	.	05 - SGLang RadixAttention.pdf	5 · SGLang: Structured LM Programs (RadixAttention)	Zheng, Yin et al. · 2024	https://arxiv.org/pdf/2312.07104v2	161e0a0123a89cd8a57d68734ae704680b0e577fee41e1e7e1029c37a9d99b57
+06	.	06 - Speculative Decoding Leviathan.pdf	6 · Speculative Decoding: Fast Inference from Transformers	Leviathan, Kalman, Matias · ICML 2023	https://arxiv.org/pdf/2211.17192v2	8967e2daab74178b8a73a6f0b0780c5cbb40f9f6dcbd5c456b24a89c128c52ed
+07	.	07 - Medusa.pdf	7 · Medusa: Multiple Decoding Heads	Cai, Li, Geng, Peng, Lee, Chen, Dao · 2024	https://arxiv.org/pdf/2401.10774v3	93d98f2e858c87ee04be440ee81ab8ad93700652ed759227d25fcf75cfdd5ef0
+08	.	08 - EAGLE.pdf	8 · EAGLE: Speculative Sampling and Feature Uncertainty	Li, Wei, Zhang, Zhang · 2024	https://arxiv.org/pdf/2401.15077v3	3484aad4d255ac8ff3ebbb0df9f3b2fdb222145923f59ad25727812f4748a0f4
+09	.	09 - DeepSeek-V3 Technical Report.pdf	9 · DeepSeek-V3 Technical Report	DeepSeek-AI · 2024	https://arxiv.org/pdf/2412.19437v2	812a3fd645c80725354de9d831a6785503007a60681461407f64e97305fa9330
+10	.	10 - DeepSeek-V4 Technical Report.pdf	10 · DeepSeek-V4: Million-Token Context Intelligence	DeepSeek-AI · 2026	https://arxiv.org/pdf/2606.19348v1	55b2d72f772ac00de2e470b3ee08443c648d971c7f57c52d6202895665e5978d
+11	DeepSeek	11 - DeepSeek-DSec.pdf	DeepSeek Elastic Compute (DSec): Sandbox Infra for Agentic Training	Huang, Tang, Chen et al. · DeepSeek-AI	https://arxiv.org/pdf/2609.22978v1	649edc87e70b8e57f9515360b15ed5576c6c8afb3c46a3763e83c22a85a660e2
+12	DeepSeek	12 - DeepSeek-V4.1-Flash.pdf	DeepSeek-V4.1-Flash: Pushing the Limits of KV Cache Compression	DeepSeek-AI	https://arxiv.org/pdf/2609.19969v1	0cfdda19c8e1691b5226dd0d4949e2397051268e8a823c2fb61db94ea20c4ac0
+13	DeepSeek	13 - DeepSeek-OCR-2.pdf	DeepSeek-OCR 2: Visual Causal Flow	Wei, Sun, Li · DeepSeek-AI · 2026	https://arxiv.org/pdf/2601.20552v1	7c8aceb1dbe0845b9e1a0c5afd761925913662e2e2c4c79b482198f3e5e1a96b
+14	DeepSeek	14 - DeepSeek-Engram.pdf	Engram: Conditional Memory via Scalable Lookup	Cheng, Tian, Zeng et al. · DeepSeek-AI	https://arxiv.org/pdf/2601.07372v2	8eab2dd35e4557d4142e5959697836f6cf926d0fbc29016257f1eea5be73df5d
+15	DeepSeek	15 - DeepSeek-mHC.pdf	mHC: Manifold-Constrained Hyper-Connections	Xie, Wei, Cao et al. · DeepSeek-AI	https://arxiv.org/pdf/2512.24880v2	d849f4709ed29bfb2751f51e24dc836403f31271d1764dddfba0768d326a75d9
+16	DeepSeek	16 - DeepSeek-V3.2.pdf	DeepSeek-V3.2: Pushing the Frontier of Open LLMs	DeepSeek-AI	https://arxiv.org/pdf/2512.02556v1	2bec0671778769c159ec389412727d1f3d4889fe1c71564b61edaa24705bd17b
+17	DeepSeek	17 - DeepSeek-Math-V2.pdf	DeepSeekMath-V2: Self-Verifiable Mathematical Reasoning	Shao, Luo, Lu, Ren et al. · DeepSeek-AI	https://arxiv.org/pdf/2511.22570v1	20ffcdebcbb88f24a7f84369fa1d71e2ec584b4d4a0e2e53c958d419103d6c11
+18	DeepSeek	18 - DeepSeek-OCR.pdf	DeepSeek-OCR: Contexts Optical Compression	Wei, Sun, Li · DeepSeek-AI	https://arxiv.org/pdf/2510.18234v1	a7297788968f8ad9ed21bcd273110814e4889efbbc99bfea86dca12205797a90
