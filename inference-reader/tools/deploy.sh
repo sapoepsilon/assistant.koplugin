@@ -141,11 +141,11 @@ CFG=$STAGE/koreader/plugins/assistant.koplugin/configuration.lua
 PI_FLAG=(); [[ $KEY_FROM_PI -eq 1 ]] && PI_FLAG=(--key-from-pi)
 if [[ $DRY -eq 1 ]]; then
   python3 "$TOOLS/render-config.py" --placeholder "$CFG"
-  ( if python3 "$TOOLS/render-config.py" "${PI_FLAG[@]}" "$W/keycheck.lua" >/dev/null 2>&1
+  ( if python3 "$TOOLS/render-config.py" ${PI_FLAG[@]+"${PI_FLAG[@]}"} "$W/keycheck.lua" >/dev/null 2>&1
     then echo "   key: found (not printed)"; else echo "   key: MISSING - a real deploy would stop here"; fi
     rm -f "$W/keycheck.lua" )
 else
-  python3 "$TOOLS/render-config.py" "${PI_FLAG[@]}" "$CFG"
+  python3 "$TOOLS/render-config.py" ${PI_FLAG[@]+"${PI_FLAG[@]}"} "$CFG"
 fi
 F=$CFG luajit -e "local c = dofile(os.getenv('F')); assert(c.features.prompts.explain_page and c.provider_settings.openai_proxycli_lan)"
 
