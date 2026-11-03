@@ -16,6 +16,7 @@ local AssistantDialog = require("dialogs/dialog")
 local SettingsMenu = require("dialogs/settings_menu")
 local Config = require("core/config")
 local Hooks = require("core/hooks")
+local InferenceReader = require("feature/inference_reader") -- local customization
 
 -- One LuaSettings per file shared across Assistant instances: the plugin is
 -- instantiated per UI (FileManager and ReaderUI), and separate LuaSettings:open
@@ -96,6 +97,15 @@ function Assistant:onDispatcherRegisterActions()
     general = true,
     separator = true
   })
+  InferenceReader.registerActions() -- local customization
+end
+
+function Assistant:onAskAIExplainPage()
+  return InferenceReader.explainPage(self)
+end
+
+function Assistant:onAskAICycleProvider()
+  return InferenceReader.cycleProvider(self)
 end
 
 function Assistant:addToMainMenu(menu_items)
