@@ -1,4 +1,10 @@
 # Assistant: AI Helper Plugin for KOReader
+
+> **Fork note (`inference-reader` branch):** this fork carries a personal "Inference reader"
+> setup (one-tap AI buttons, gestures, prompts and a paper library for reading LLM-inference
+> papers on a Pixel Fold). Plugin changes are limited to `main.lua` hooks and
+> `feature/inference_reader.lua`; everything else is in [`inference-reader/`](inference-reader/README.md).
+> Upstream: [omer-faruq/assistant.koplugin](https://github.com/omer-faruq/assistant.koplugin).
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 [![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
