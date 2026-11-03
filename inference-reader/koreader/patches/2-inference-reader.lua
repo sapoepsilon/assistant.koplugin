@@ -11,6 +11,10 @@ Inference reader user patch (Pixel 9 Pro Fold, KOReader 2026.07.x)
      ir_layout_columns  zoom to one column at a time + page view (cover screen)
      ir_layout_page     whole page + page view (figures, tables)
      ir_toggle_figures  invert the document back so figures keep true colours
+   Zoom actions (also bound to spread / pinch):
+     ir_zoom_in         PDF: fit page -> fit width -> magnify x1.25 (page view,
+                        tap the edges to move across the page); EPUB: bigger text
+     ir_zoom_out        the same ladder backwards; EPUB: smaller text
 3. Fold awareness: when the screen becomes narrow (cover screen) a PDF switches
    to column view; when it becomes wide again, column view goes back to
    content width. Only touches paged documents (PDF/DjVu).
@@ -129,15 +133,15 @@ end
 -------------------------------------------------------------------------------
 Dispatcher:registerAction("ir_layout_inner", {
     category = "none", event = "IRLayout", arg = "inner",
-    title = "Layout: content width, scroll", paging = true,
+    title = "Zoom: fit width (scroll)", paging = true,
 })
 Dispatcher:registerAction("ir_layout_columns", {
     category = "none", event = "IRLayout", arg = "columns",
-    title = "Layout: one column at a time", paging = true,
+    title = "Zoom: one column at a time", paging = true,
 })
 Dispatcher:registerAction("ir_layout_page", {
     category = "none", event = "IRLayout", arg = "page",
-    title = "Layout: whole page", paging = true,
+    title = "Zoom: fit page", paging = true,
 })
 Dispatcher:registerAction("ir_toggle_figures", {
     category = "none", event = "IRToggleFigures",
@@ -167,9 +171,9 @@ Dispatcher:registerAction("ir_library", {
 })
 
 local LAYOUT_NAMES = {
-    inner = "Content width · scroll",
+    inner = "Fit width · scroll",
     columns = "One column at a time",
-    page = "Whole page",
+    page = "Fit page",
 }
 
 local function applyLayout(ui, which, quiet)
@@ -216,6 +220,67 @@ function ReaderUI:onIRToggleFigures()
         })
     end)
     if not ok then logger.warn("inference-reader: figure toggle failed", err) end
+    return true
+end
+
+-- Zoom in / out. category "arg": from the quick menu the event gets nil, from a
+-- spread / pinch gesture it gets the gesture (its distance sets the step).
+Dispatcher:registerAction("ir_zoom_in", {
+    category = "arg", event = "IRZoom", arg = "in", title = "Zoom in", reader = true,
+})
+Dispatcher:registerAction("ir_zoom_out", {
+    category = "arg", event = "IRZoom", arg = "out", title = "Zoom out", reader = true,
+})
+
+local ZOOM_STEP, ZOOM_MAX = 1.25, 6
+
+local function pinchGesture(arg)
+    if type(arg) == "table" and (arg.ges == "spread" or arg.ges == "pinch") then return arg end
+end
+
+local function zoomBy(ui, arg)
+    local ges = pinchGesture(arg)
+    local zoom_in
+    if ges then zoom_in = ges.ges == "spread" else zoom_in = arg ~= "out" end
+    if ui.rolling then
+        -- reflowable (EPUB/HTML): zoom = font size; a gesture scales with its distance
+        ui:handleEvent(Event:new(zoom_in and "IncreaseFontSize" or "DecreaseFontSize", ges or 1))
+        return
+    end
+    if not ui.paging or not ui.zooming then return end
+    local z = ui.zooming
+    -- current zoom in units of content width (1 = fit width, <1 = whole page visible)
+    local cur = z:getNumberOf("columns")
+    local step = ZOOM_STEP
+    if ges and ges.distance then
+        local side = math.min(Screen:getWidth(), Screen:getHeight())
+        step = math.max(1.1, math.min(2.5, 1 + ges.distance / (side * 0.5)))
+    end
+    if zoom_in and cur < 0.98 then
+        return applyLayout(ui, "inner")
+    elseif not zoom_in and cur <= 1.02 then
+        return applyLayout(ui, "page")
+    end
+    local new = zoom_in and math.min(cur * step, ZOOM_MAX) or cur / step
+    if not zoom_in and new <= 1.02 then
+        return applyLayout(ui, "inner")
+    end
+    -- magnified: page view (continuous view cannot pan sideways), manual zoom factor
+    if ui.view.page_scroll then ui:handleEvent(Event:new("SetScrollMode", false)) end
+    ui.document.configurable.page_scroll = 0
+    ui:handleEvent(Event:new("SetZoomPan", { kopt_zoom_factor = new }, true))
+    ui:handleEvent(Event:new("SetZoomMode", "manual"))
+    z:setZoom()
+    ui:handleEvent(Event:new("RedrawCurrentPage"))
+    UIManager:setDirty(ui.dialog or ui, "full")
+    UIManager:show(Notification:new{
+        text = ("Zoom %d%% · tap the edges to move"):format(math.floor(new * 100 + 0.5)),
+    })
+end
+
+function ReaderUI:onIRZoom(arg)
+    local ok, err = pcall(zoomBy, self, arg)
+    if not ok then logger.warn("inference-reader: zoom failed", err) end
     return true
 end
 

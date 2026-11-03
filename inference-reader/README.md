@@ -25,17 +25,30 @@ Everything else (KOReader patch, prompts, settings, library, tools) is in this d
   authors, position and +-1 page of paper text. Built-ins that don't help with papers (eli5,
   grammar, translate, vocabulary, historical_context, wikipedia) are hidden. The plugin's
   OTA updater is disabled so it can't overwrite the local edits.
-- **Gestures** (reader): tap top-left corner (or two-finger tap there) = quick menu
-  (AI: explain this page / ask a question / switch provider, three layouts, figure colours,
-  night mode, contents, previous/next paper, library). Tap bottom-left = night mode.
-  Hold bottom-left = explain this page. Hold bottom-right = ask the AI. Draw →←→ / ←→← =
-  next / previous paper. File browser: bottom-left corner = night mode.
+- **Quick menu** (reader): tap the top-left corner (or two-finger tap there). Five groups:
+  - AI: explain this page, ask a question, switch provider.
+  - Zoom: Zoom in, Zoom out, Fit width (scroll), Fit page, One column at a time.
+  - Find your way: Contents, Go to page, Search in document, Bookmark this page (on/off),
+    Bookmarks & highlights (KOReader's annotation list: bookmarks, highlights and notes).
+  - Display: night mode, figure colours, Brightness, Rotation lock, More reader settings
+    (KOReader's bottom bar: zoom/contrast/margins for PDF, font/size/spacing for EPUB).
+  - Papers: previous / next paper, library.
+- **Zoom**: spread two fingers = Zoom in, pinch = Zoom out (stock KOReader binds these to font
+  size, which does nothing in a PDF). In a PDF the ladder is fit page -> fit width
+  (continuous scroll) -> magnified x1.25 per step (up to 600%, a wider spread jumps further).
+  Magnified switches to page view with a manual zoom factor, because continuous view cannot
+  pan sideways: tap the right / left edge to move across and down the page. Zooming back out
+  past 100% returns to fit width + scroll. In an EPUB / HTML file Zoom in / out change the
+  font size instead.
+- **Other gestures** (reader): tap bottom-left = night mode. Hold bottom-left = explain this
+  page. Hold bottom-right = ask the AI. Draw →←→ / ←→← = next / previous paper. File
+  browser: bottom-left corner = night mode.
 - **Night mode** everywhere; "Figures: true colours / dark" flips the document inversion per
   paper so plots keep their colours.
 - **Layouts**: default zoom to content width + continuous scroll (both arXiv columns readable
   on the 2076x2152 inner screen). Column view (2 columns, page mode) for the cover screen; the
   patch switches to it when the screen gets narrow (w < 0.62 h) and back when it gets wide.
-  All three layouts are in the quick menu.
+  Fit width / Fit page / One column at a time are in the quick menu's zoom group.
 - **Library**: home `Books/Inference`, resumes the last paper, cover list with clean titles
   from `custom_metadata.lua`, sorted by filename = reading order (01-10), DeepSeek papers
   (11-18) in `DeepSeek/`. Collections "Inference reading list" and "DeepSeek" are linked to
